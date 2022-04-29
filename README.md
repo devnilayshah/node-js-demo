@@ -12,6 +12,10 @@ A demo application to start with in Node Js
 4. Check insturction files
 
 
+## Postman collection
+
+https://www.getpostman.com/collections/9b6ce2a3d130c3d1350b
+
 
 ## Contributing
 
