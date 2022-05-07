@@ -4,6 +4,7 @@ import * as Bcrypt from 'bcrypt';
 import { UserLogin } from '../models/UserLogin';
 import * as dateTime from 'node-datetime';
 
+
 export class Utils{
 
     static getCurrentDateTime(){

@@ -1,6 +1,18 @@
+import { validationResult } from 'express-validator';
 import { UserLogin } from '../models/UserLogin';
 
+
 export class GlobalMiddleware{
+
+    static checkError(req: any, res: any, next: any) {
+        const error = validationResult(req);  
+
+        if (!error.isEmpty()) {
+            next(new Error(error.array()[0].msg));
+        } else {
+            next();
+        }
+    }
 
 	static async authenticate(req: any, res: any, next: any){
 		const authHeader = req.headers.authorization;

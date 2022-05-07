@@ -4,7 +4,7 @@ const table = 'users';
 
 export class User{
 
-	static async createUser(userData){
+	static async createUser(userData: any){
 		let date = Utils.getCurrentDateTime();
 		let encryptedPassword = await Utils.encryptPassword(userData.password);
 		
@@ -26,7 +26,23 @@ export class User{
 				resolve(result);
 			});
 		});
+	}
+
+	static async checkEmailId(userEmail: string){
 		
+		let sql = 'SELECT * FROM `'+table+'` WHERE `email`= "'+userEmail+'"';
+		let userCheck = await new Promise((resolve, reject)=>{
+			connection.query(sql,function(err: any, result: any){
+				if (err) {
+					reject(err);
+				}
+				if(result.length > 0){
+					resolve('1');
+				}
+				resolve('0');
+			});
+		});
+		return userCheck;
 	}
 
 }

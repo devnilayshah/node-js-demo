@@ -36,6 +36,7 @@ export class LoginController{
 
 	/** Login into system **/
 	static async loginUser(req: any, res: any, next: any){
+		
 		try{
 
 			let email = req.body.email;

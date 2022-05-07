@@ -20,8 +20,8 @@ export class Server {
 	}
 
 	configureBodyParser() {
-		this.app.use(express.json()); 
 		this.app.use(express.urlencoded({ extended: true }));
+		this.app.use(express.json()); 
 	}
 
 	setRoutes(){
@@ -37,12 +37,13 @@ export class Server {
 
 	handleErrors() {
 		this.app.use((error: any, req: any, res: any, next: any) => {
-			const errorStatus = req.errorStatus || 500;
+			
+			const errorStatus = req.errorStatus || 200;
 			const apiStatus = req.apiStatus || 0;
 
 			res.status(errorStatus).json({
 				status: apiStatus,
-				message: error.message || 'Something went wrong!'
+				message: error.message || 'Something went wrong!',
 			});
 		})
 	}
